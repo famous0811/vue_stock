@@ -4,22 +4,31 @@ import Landing from "../pages/Landing.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "Landing",
-    component: Landing,
-  },
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import("../pages/About.vue"),
-  // },
+    name: "main",
+    component:()=>import("../components/layout/index.vue"),
+    children: [
+      {
+        path: "landing",
+        name: "landing",
+        component: Landing,
+      },
+      {
+        path:"chart",
+        name: "Chart",
+        component: () => import("../pages/Chart.vue")
+      },
+      
+    ]
+  }
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+router.beforeEach((to, from, next)=>{
+  next();
+})
 
 export default router;
