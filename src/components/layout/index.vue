@@ -3,18 +3,19 @@
     <header>
       <h1>K증권</h1>
       <div class="search">
-        <!-- <input
+        <input
           type="text"
           class="searchInput"
           placeholder="찾으시는 종목을 입력하세요"
           v-on:keyup.enter="select"
           v-model="input"
-        /> -->
+        />
       </div>
       <ul v-if="!login" class="sign">
         <li>
-          <v-icon>mdiBookSearch</v-icon>
+          <SearchIcon />
         </li>
+
         <li>
           <ButtonComponent
             color="black"
@@ -22,6 +23,7 @@
             :typesign="true"
             borderRad="10px"
             padding="5px 15px"
+            fontWeight="bold"
           />
         </li>
         <li>
@@ -30,7 +32,8 @@
             text="회원가입"
             borderRad="10px"
             padding="5px 15px"
-            typesign
+            fontWeight="bold"
+            :typesign="true"
           />
         </li>
       </ul>
@@ -52,7 +55,7 @@ import ButtonComponent from "../assets/button.vue";
   },
   methods: {
     select() {
-      console.log(this.input);
+      console.log(this.searchText);
       // if(this.text==="") return;
       // alert(this.text);
     },
@@ -63,7 +66,7 @@ export default class Landing extends Vue {
     return {
       searching: false,
       login: false,
-      input: "",
+      searchText: "",
     };
   }
 }

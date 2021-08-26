@@ -7,6 +7,7 @@
       fontSize: fontSize,
       padding: padding,
       borderRadius: borderRad,
+      fontWeight: fontWeight,
       cursor: 'pointer',
     }"
     v-text="text"
@@ -49,6 +50,10 @@ import { Options, Vue } from "vue-class-component";
       type: String,
       default: "none",
     },
+    fontWeight: {
+      type: String,
+      default: "regular",
+    },
     typesign: {
       type: Boolean,
       default: false,
@@ -61,7 +66,7 @@ export default class Button extends Vue {}
 <style lang="scss">
 .typesign {
   transition: color 0.5s;
-  background: $personal !important;
+  background: #487bff !important;
   &:hover {
     color: white !important;
   }

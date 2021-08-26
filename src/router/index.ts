@@ -5,7 +5,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "main",
-    component:()=>import("../components/layout/index.vue"),
+    component: () => import("../components/layout/index.vue"),
     children: [
       {
         path: "landing",
@@ -13,13 +13,12 @@ const routes: Array<RouteRecordRaw> = [
         component: Landing,
       },
       {
-        path:"chart",
+        path: "chart",
         name: "Chart",
-        component: () => import("../pages/Chart.vue")
+        component: () => import("../pages/Chart.vue"),
       },
-      
-    ]
-  }
+    ],
+  },
 ];
 
 const router = createRouter({
@@ -27,8 +26,8 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next)=>{
+router.beforeEach((to, from, next) => {
   next();
-})
+});
 
 export default router;
