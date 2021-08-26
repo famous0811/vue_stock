@@ -1,46 +1,46 @@
 <template lang="">
   <div>
     <header>
-      <h1>K증권</h1>
-      <div class="search">
-        <input
-          type="text"
-          class="searchInput"
-          placeholder="찾으시는 종목을 입력하세요"
-          v-on:keyup.enter="select"
-          v-model="input"
-        />
-      </div>
-      <ul v-if="!login" class="sign">
-        <li>
-          <SearchIcon />
-        </li>
+      <h1 class="title">K증권</h1>
 
-        <li>
+      <ul class="rightBox">
+        <li class="searchingBox">
+          <transition name="bounce">
+            <input
+              type="text"
+              class="searchInput"
+              placeholder="찾으시는 종목을 입력하세요"
+              v-on:keyup.enter="select"
+              v-model="input"
+              v-if="searchMode"
+            />
+          </transition>
+          <SearchIcon @click="searchMode = !searchMode" />
+        </li>
+        <li v-if="login">
           <ButtonComponent
             color="black"
             text="로그인"
             :typesign="true"
-            borderRad="10px"
-            padding="5px 15px"
-            fontWeight="bold"
+            borderRad="20px"
+            padding="7px 20px"
           />
         </li>
-        <li>
+        <li v-if="login">
           <ButtonComponent
             color="black"
             text="회원가입"
-            borderRad="10px"
-            padding="5px 15px"
-            fontWeight="bold"
+            borderRad="20px"
+            padding="7px 20px"
             :typesign="true"
           />
         </li>
-      </ul>
-      <ul v-else>
-        <li>=</li>
+        <li v-else>
+          <LoaderIcon />
+        </li>
       </ul>
     </header>
+
     <router-view class="router-view"></router-view>
   </div>
 </template>
@@ -56,8 +56,6 @@ import ButtonComponent from "../assets/button.vue";
   methods: {
     select() {
       console.log(this.searchText);
-      // if(this.text==="") return;
-      // alert(this.text);
     },
   },
 })
@@ -66,6 +64,7 @@ export default class Landing extends Vue {
     return {
       searching: false,
       login: false,
+      searchMode: false,
       searchText: "",
     };
   }
@@ -86,15 +85,6 @@ header {
   box-shadow: 5px 6px 5px rgba(0, 0, 0, 0.2);
 }
 
-.search {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 20px;
-  transition: all 0.6s;
-  margin-left: 30px;
-  display: flex;
-}
-
 .searchInput {
   border: none;
   width: 100%;
@@ -108,12 +98,45 @@ header {
   height: 100%;
   padding: 60px 0 0;
 }
+.title {
+  width: 100%;
+}
 
-.sign {
+.rightBox {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
+  width: 100%;
   & > li {
     margin: 0 5px;
+    min-width: fit-content;
   }
+}
+.bounce-enter-active {
+  animation: bounce-in 0.9s forwards;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.8s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    width: 0px;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+.searchingBox {
+  height: 24px;
+  width: 100%;
+  & > input {
+    width: 100%;
+    max-width: 400px;
+  }
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
 }
 </style>
