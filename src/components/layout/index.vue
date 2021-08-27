@@ -1,7 +1,7 @@
 <template lang="">
   <div>
     <header>
-      <h1 class="title">K증권</h1>
+      <h2 class="title">K증권</h2>
       <ul class="rightBox">
         <li class="searchingBox">
           <transition name="searchanimation">
@@ -58,10 +58,10 @@
         </li>
       </ul>
     </header>
-    <v-content style="background-color: #f4f6f8">
-      <v-container class="fill-height" fluid>
-        <router-view class="router-view"></router-view>
-      </v-container>
+    <v-content>
+      <!-- <v-container style="" class="fill-height" fluid> -->
+      <router-view class="router-view"></router-view>
+      <!-- </v-container> -->
     </v-content>
   </div>
 </template>
@@ -121,6 +121,7 @@ header {
   left: 0;
   padding: 0 20px;
   height: 60px;
+  background: white;
   box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -129,11 +130,13 @@ header {
 
 .router-view {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  background-color: #f4f6f8;
   padding: 60px 0 0;
 }
 .title {
   width: 100%;
+  color: #487bff;
 }
 
 .rightBox {

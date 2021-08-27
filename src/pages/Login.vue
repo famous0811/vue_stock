@@ -31,9 +31,7 @@
           @bind="passwordBind"
           ref="userpassword"
         />
-        <router-link to="/signup" class="loginToSignup">
-          회원가입 하러가기</router-link
-        >
+        <router-link to="/signup" class="loginToSignup"> 회원가입</router-link>
         <ButtonComponent
           text="로그인"
           backGround="#f0f7fc"
