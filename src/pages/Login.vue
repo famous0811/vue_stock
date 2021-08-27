@@ -7,7 +7,10 @@
         class="loginForm"
       >
         <FinanceImage class="loginImg" />
-        <h2 style="margin: 10px 0">K증권 시작하기!</h2>
+        <h2 style="margin: 10px 0">
+          <strong style="color: #487bff">K증권</strong>
+          시작하기!
+        </h2>
         <InputComponent
           type="text"
           borderBottom="1px solid black"
@@ -44,7 +47,9 @@
   </div>
 </template>
 <script lang="ts">
-import { onBeforeMount, onMounted } from "vue";
+//TODO: implement
+/*구글,네이버등 으로 로그인 할수 있는 버튼 만들기 로그인 회원가입 둘다 */
+
 import { Options, Vue } from "vue-class-component";
 import InputComponent from "../components/assets/input.vue";
 import ButtonComponent from "../components/assets/button.vue";
@@ -64,13 +69,12 @@ import ButtonComponent from "../components/assets/button.vue";
     signIn() {
       if (this.id === "") {
         alert("id를 입력해주세요!");
-        console.log(this.$refs.test.functionYouWantToCall());
         this.idfocus();
         return;
       }
       if (this.password === "") {
         alert("비밀번호를 입력해주세요!");
-        this.$refs.userpassword.focus();
+        this.passwordfocus();
         return;
       }
 
@@ -78,11 +82,15 @@ import ButtonComponent from "../components/assets/button.vue";
       //   userid: this.id,
       //   password: this.password,
       // });
+
       this.$router.push("/");
     },
 
     idfocus() {
       this.$refs.userid.focus();
+    },
+    passwordfocus() {
+      this.$refs.userpassword.focus();
     },
 
     userIdBind(data: string) {

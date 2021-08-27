@@ -5,16 +5,20 @@
       <ul class="rightBox">
         <li class="searchingBox">
           <transition name="searchanimation">
-            <input
+            <InputComponent
               type="text"
               class="searchInput"
+              borderBottom="1px solid #191919"
+              padding="4px 5px"
+              fontSize="14px"
               placeholder="찾으시는 종목을 입력하세요"
               v-on:keyup.enter="select"
-              v-model="input"
               v-if="searchMode"
+              @bind="selectBind"
+              ref="test"
             />
           </transition>
-          <SearchIcon @click="searchMode = !searchMode" />
+          <SearchIcon @click="teast" />
         </li>
         <li v-if="login">
           <ButtonComponent
@@ -65,21 +69,32 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import ButtonComponent from "../assets/button.vue";
-//TODO: implement
+import InputComponent from "../assets/input.vue";
 @Options({
   components: {
     ButtonComponent,
+    InputComponent,
   },
   methods: {
     select() {
       console.log(this.searchText);
+    },
+    selectBind(data: string) {
+      this.searchText = data;
+    },
+    teast() {
+      this.searchMode = !this.searchMode;
+      if (this.searchMode) {
+        setTimeout(() => {
+          this.$refs.test.focus();
+        }, 0.1);
+      }
     },
   },
 })
 export default class Landing extends Vue {
   data() {
     return {
-      // searching: false,
       searchMode: false,
       login: false,
       searchText: "",
@@ -110,11 +125,6 @@ header {
 }
 
 .searchInput {
-  border: none;
-  width: 100%;
-  padding: 4px 5px;
-  border-bottom: 1px solid #191919;
-  font-family: "";
 }
 
 .router-view {
