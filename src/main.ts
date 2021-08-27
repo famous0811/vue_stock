@@ -6,10 +6,12 @@ import store from "./store";
 
 import SearchIcon from "@/assets/images/search.vue";
 import LoaderIcon from "@/assets/images/loader.vue";
+import FinanceImage from "@/assets/images/Finance.vue";
 
 createApp(App)
   .component("SearchIcon", SearchIcon)
   .component("LoaderIcon", LoaderIcon)
+  .component("FinanceImage", FinanceImage)
   .use(router)
   .use(store)
   .use(vuetify)

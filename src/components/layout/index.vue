@@ -2,10 +2,9 @@
   <div>
     <header>
       <h1 class="title">K증권</h1>
-
       <ul class="rightBox">
         <li class="searchingBox">
-          <transition name="bounce">
+          <transition name="searchanimation">
             <input
               type="text"
               class="searchInput"
@@ -36,12 +35,30 @@
           />
         </li>
         <li v-else>
-          <LoaderIcon />
+          <LoaderIcon @click="poplist = true" class="popupIcon" />
+          <div class="popupground" @click="poplist = false" v-if="poplist" />
+          <transition name="popupanimation">
+            <div class="poplist" v-if="poplist">
+              <h2 style="margin: 15px 0">MY</h2>
+              <ul class="poplisthead">
+                <li class="poplistheadList">#알림</li>
+                <li class="poplistheadList">#최근조회</li>
+                <li class="poplistheadList">#계좌잔고</li>
+              </ul>
+              <ul>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+          </transition>
         </li>
       </ul>
     </header>
-
-    <router-view class="router-view"></router-view>
+    <v-content style="background-color: #f4f6f8">
+      <v-container class="fill-height" fluid>
+        <router-view class="router-view"></router-view>
+      </v-container>
+    </v-content>
   </div>
 </template>
 
@@ -62,10 +79,17 @@ import ButtonComponent from "../assets/button.vue";
 export default class Landing extends Vue {
   data() {
     return {
-      searching: false,
-      login: false,
+      // searching: false,
       searchMode: false,
+      login: false,
       searchText: "",
+      poplist: false,
+      news: [
+        {
+          title: "코스피 떡락?",
+          content: "ㅋㅋㅋㅋㅋㅋ",
+        },
+      ],
     };
   }
 }
@@ -82,7 +106,7 @@ header {
   left: 0;
   padding: 0 20px;
   height: 60px;
-  box-shadow: 5px 6px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.2);
 }
 
 .searchInput {
@@ -112,13 +136,13 @@ header {
     min-width: fit-content;
   }
 }
-.bounce-enter-active {
-  animation: bounce-in 0.9s forwards;
+.searchanimation-enter-active {
+  animation: searchanimation-in 0.9s forwards;
 }
-.bounce-leave-active {
-  animation: bounce-in 0.8s reverse;
+.searchanimation-leave-active {
+  animation: searchanimation-in 0.8s reverse;
 }
-@keyframes bounce-in {
+@keyframes searchanimation-in {
   0% {
     width: 0px;
     opacity: 0;
@@ -138,5 +162,65 @@ header {
   cursor: pointer;
   display: flex;
   justify-content: flex-end;
+}
+
+.popupIcon {
+  cursor: pointer;
+}
+.popupground {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: none;
+}
+.poplist {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: #f0f7fc;
+  /* border-left: 1px solid rgba(0, 0, 0, 0.2); */
+  box-shadow: 0 0px 3px rgba(0, 0, 0, 0.24);
+  width: 400px;
+  height: 100%;
+}
+
+.popupanimation-enter-active {
+  animation: popupanimation-in 0.9s;
+}
+.popupanimation-leave-active {
+  animation: popupanimation-in 0.8s reverse;
+}
+@keyframes popupanimation-in {
+  0% {
+    width: 0px;
+    opacity: 0;
+  }
+  100% {
+    width: 400px;
+    opacity: 1;
+  }
+}
+.poplisthead {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin: 10px 0;
+  white-space: nowrap;
+}
+.poplistheadList {
+  border-radius: 50px;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: all 0.8s;
+  &:hover {
+    background: #191919;
+  }
 }
 </style>

@@ -1,18 +1,19 @@
 <template lang="">
-  <button
+  <input
+    v-model="input"
     :style="{
       color: color,
       border: border,
       background: backGround,
       fontSize: fontSize,
       padding: padding,
+      borderBottom: borderBottom,
       borderRadius: borderRad,
-      fontWeight: fontWeight,
       margin: margin,
-      cursor: 'pointer',
+      fontFamily: fontFamily,
     }"
-    v-text="text"
     :class="{ typesign: typesign }"
+    ref="input"
   />
 </template>
 
@@ -20,24 +21,27 @@
 import { Options, Vue } from "vue-class-component";
 
 @Options({
-  name: "buttonasset",
+  name: "inputasset",
   props: {
     color: {
       type: String,
       default: "#191919",
     },
-    text: {
-      type: String,
-      required: true,
-      default: "button",
-    },
     border: {
+      type: String,
+      default: "none",
+    },
+    borderBottom: {
       type: String,
       default: "none",
     },
     backGround: {
       type: String,
       default: "none",
+    },
+    fontFamily: {
+      type: String,
+      default: "Noto Sans KR",
     },
     fontSize: {
       type: String,
@@ -51,29 +55,32 @@ import { Options, Vue } from "vue-class-component";
       type: String,
       default: "none",
     },
-    fontWeight: {
-      type: String,
-      default: "regular",
-    },
     margin: {
       type: String,
       default: "none",
     },
-    typesign: {
-      type: Boolean,
-      default: false,
+  },
+  data() {
+    return {
+      input: "",
+    };
+  },
+  watch: {
+    input: {
+      handler() {
+        this.$emit("bind", this.input);
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
+  methods: {
+    focus() {
+      this.$refs.input.focus();
     },
   },
 })
 export default class Button extends Vue {}
 </script>
 
-<style lang="scss">
-.typesign {
-  transition: color 0.5s;
-  background: #487bff !important;
-  &:hover {
-    color: white !important;
-  }
-}
-</style>
+<style lang="scss"></style>

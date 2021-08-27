@@ -24,4 +24,10 @@ body {
   margin: 0;
   padding: 0;
 }
+button {
+  border: none;
+  background: none;
+  color: inherit;
+  padding: 0;
+}
 </style>
