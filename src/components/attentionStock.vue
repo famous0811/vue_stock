@@ -17,14 +17,14 @@
     >
       <td class="attentionStockDessertContents">
         <div>{{ dessert.title.name }}</div>
-        <span>{{ dessert.title.code }}</span>
+        <span class="titleCode">{{ dessert.title.code }}</span>
       </td>
       <td class="attentionStockDessertContents">
         <div>{{ dessert.value.now }}</div>
-        <span>{{ dessert.value.increase }}</span>
+        <span class="valueIncrease plus">{{ dessert.value.increase }}</span>
       </td>
       <td class="attentionStockDessertContents">
-        <div class="contentsDiff minus">
+        <div class="contentsDiff plus">
           {{ dessert.diff }}
         </div>
       </td>
@@ -32,14 +32,6 @@
       <td class="attentionStockDessertContents">{{ dessert.trading }}</td>
     </tr>
   </table>
-  <!-- <v-data-table
-      :loading="loadingState"
-      loading-text="로딩중입니다."
-      :headers="headers"
-      :items="desserts"
-    >
-    </v-data-table> -->
-  <!-- </div> -->
 </template>
 <script>
 import { Options, Vue } from "vue-class-component";
@@ -85,7 +77,46 @@ import { Options, Vue } from "vue-class-component";
             now: "74,300",
             increase: "300",
           },
-          diff: "-10.3%",
+          diff: "10.3%",
+          marketvalue: "4,429,579(억)",
+          trading: "12,158,306",
+        },
+        {
+          title: {
+            name: "삼성전자",
+            code: "005930",
+          },
+          value: {
+            now: "74,300",
+            increase: "300",
+          },
+          diff: "10.3%",
+          marketvalue: "4,429,579(억)",
+          trading: "12,158,306",
+        },
+        {
+          title: {
+            name: "삼성전자",
+            code: "005930",
+          },
+          value: {
+            now: "74,300",
+            increase: "300",
+          },
+          diff: "10.3%",
+          marketvalue: "4,429,579(억)",
+          trading: "12,158,306",
+        },
+        {
+          title: {
+            name: "삼성전자",
+            code: "005930",
+          },
+          value: {
+            now: "74,300",
+            increase: "300",
+          },
+          diff: "10.3%",
           marketvalue: "4,429,579(억)",
           trading: "12,158,306",
         },
@@ -110,7 +141,7 @@ export default class AttentionStock extends Vue {}
   flex-shrink: 1;
   width: 100%;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
   color: rgba(0, 0, 0, 0.5);
 }
 .attentionStockDessert {
@@ -121,7 +152,7 @@ export default class AttentionStock extends Vue {}
   transition: all 0.5s;
   padding: 7px 0 8px;
   &:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.08);
   }
 }
 .attentionStockHeaderContents {
@@ -143,19 +174,72 @@ export default class AttentionStock extends Vue {}
 }
 .contentsDiff {
   color: white;
+  position: relative;
+  &::before {
+    position: absolute;
+    left: 5px;
+    transform: translateY(-55%);
+    top: 50%;
+  }
   &.minus {
     background-color: #077df3;
+    &::before {
+      content: "−";
+    }
   }
   &.none {
     background-color: #bbbbbb;
+    &::before {
+      content: "−";
+    }
   }
   &.plus {
     background-color: #ec3738;
+    &::before {
+      transform: translateY(-50%);
+      content: "+";
+    }
   }
   border-radius: 5px;
   width: fit-content;
-  padding: 8px 10px;
+  padding: 8px 13px;
   font-size: 12px;
   letter-spacing: 0.8px;
+}
+
+.titleCode {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.valueIncrease {
+  position: relative;
+  font-size: 12px;
+  &::before {
+    position: absolute;
+    left: -13px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &.minus {
+    &::before {
+      content: "▼";
+    }
+    color: #077df3;
+  }
+  &.plus {
+    &::before {
+      content: "▲";
+    }
+    color: #ec3738;
+  }
+  &.none {
+    &::before {
+      content: "−";
+      height: fit-content;
+      left: -10px;
+      transform: translateY(-55%);
+    }
+    color: #bbbbbb;
+  }
 }
 </style>

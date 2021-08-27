@@ -54,6 +54,7 @@ export default class Landing extends Vue {}
   width: 100%;
   height: 100vh;
   padding: 0 20px;
+  overflow: auto;
 }
 .landingContents {
   background-color: white;
