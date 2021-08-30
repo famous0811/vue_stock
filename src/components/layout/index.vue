@@ -1,13 +1,23 @@
-<template lang="">
+<template>
   <div>
-    <header>
-      <h2 class="title">K증권</h2>
+    <header class="layoutHeader">
+      <h2 class="headerTitle">K증권</h2>
+      <ul class="mainBox">
+        <li
+          v-for="(menu, index) in mainMenu"
+          :key="index"
+          class="mainContents"
+          :class="menu.selected ? 'select' : ''"
+        >
+          {{ menu.text }}
+        </li>
+      </ul>
+
       <ul class="rightBox">
         <li class="searchingBox">
           <transition name="searchanimation">
             <InputComponent
               type="text"
-              class="searchInput"
               borderBottom="1px solid #191919"
               padding="4px 5px"
               fontSize="14px"
@@ -18,25 +28,15 @@
               ref="test"
             />
           </transition>
-          <SearchIcon @click="teast" />
+          <div @click="teast">
+            <i class="iconify sginup" data-icon="mdi:search" />
+          </div>
+          <!-- <SearchIcon @click="teast" /> -->
         </li>
-        <li v-if="login">
-          <ButtonComponent
-            color="black"
-            text="로그인"
-            :typesign="true"
-            borderRad="20px"
-            padding="7px 20px"
-          />
-        </li>
-        <li v-if="login">
-          <ButtonComponent
-            color="black"
-            text="회원가입"
-            borderRad="20px"
-            padding="7px 20px"
-            :typesign="true"
-          />
+        <li v-if="!login">
+          <router-link to="/login">
+            <i class="iconify sginup" data-icon="mdi:login"></i>
+          </router-link>
         </li>
         <li v-else>
           <LoaderIcon @click="poplist = true" class="popupIcon" />
@@ -105,13 +105,27 @@ export default class Landing extends Vue {
           content: "ㅋㅋㅋㅋㅋㅋ",
         },
       ],
+      mainMenu: [
+        {
+          text: "국내증시",
+          selected: false,
+        },
+        {
+          text: "해외증시",
+          selected: false,
+        },
+        {
+          text: "뉴스",
+          selected: false,
+        },
+      ],
     };
   }
 }
 </script>
 
 <style lang="scss">
-header {
+.layoutHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -126,7 +140,10 @@ header {
   z-index: 1;
 }
 
-.searchInput {
+.headerTitle {
+  width: 60%;
+  min-width: fit-content;
+  color: #487bff;
 }
 
 .router-view {
@@ -135,11 +152,35 @@ header {
   background-color: #f4f6f8;
   padding: 60px 0 0;
 }
-.title {
-  width: 100%;
-  color: #487bff;
+.sginup {
+  font-size: 21px;
 }
+.mainBox {
+  width: 100%;
+  display: flex;
 
+  justify-content: space-around;
+  font-size: 17px;
+  height: 100%;
+}
+.mainContents {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.select {
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #487bff;
+    border-radius: 10px 10px 0 0;
+  }
+}
 .rightBox {
   display: flex;
   justify-content: flex-end;

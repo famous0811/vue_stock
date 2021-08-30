@@ -3,6 +3,7 @@ import vuetify from "./plugins/vuetify";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import "@iconify/iconify";
 
 import SearchIcon from "@/assets/images/search.vue";
 import LoaderIcon from "@/assets/images/loader.vue";

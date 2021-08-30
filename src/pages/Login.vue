@@ -1,47 +1,54 @@
 <template>
-  <div class="login">
-    <div class="loginWrap">
-      <form
-        action="javascript:void(0);"
-        @submit.prevent="signIn"
-        class="loginForm"
-      >
-        <FinanceImage class="loginImg" />
-        <h2 style="margin: 10px 0">
-          <strong style="color: #487bff">K증권</strong>
-          시작하기!
-        </h2>
-        <InputComponent
-          type="text"
-          borderBottom="1px solid black"
-          margin="10px 0"
-          padding="7px 5px"
-          placeholder="아이디를 입력해주세요!"
-          fontFamily="Roboto"
-          @bind="userIdBind"
-          ref="userid"
-        />
-        <InputComponent
-          type="password"
-          v-model="password"
-          borderBottom="1px solid black"
-          margin="10px 0"
-          padding="7px 5px"
-          placeholder="비밀번호를 입력해주세요!"
-          @bind="passwordBind"
-          ref="userpassword"
-        />
-        <router-link to="/signup" class="loginToSignup"> 회원가입</router-link>
-        <ButtonComponent
-          text="로그인"
-          backGround="#f0f7fc"
-          borderRad="10px"
-          margin="5px 0"
-          type="submit"
-          class="loginbtn"
-        />
-      </form>
-    </div>
+  <div class="loginWrap">
+    <transition name="logintest">
+      <div class="login">
+        <div @click="backHome" class="loginBackbtn">
+          <i class="iconify" data-icon="mdi:close" />
+        </div>
+        <form
+          action="javascript:void(0);"
+          @submit.prevent="signIn"
+          class="loginForm"
+        >
+          <FinanceImage class="loginImg" />
+          <h2 style="margin: 10px 0">
+            <strong style="color: #487bff">K증권</strong>
+            시작하기!
+          </h2>
+          <InputComponent
+            type="text"
+            borderBottom="1px solid black"
+            margin="10px 0"
+            padding="7px 5px"
+            placeholder="아이디를 입력해주세요!"
+            fontFamily="Roboto"
+            @bind="userIdBind"
+            ref="userid"
+          />
+          <InputComponent
+            type="password"
+            v-model="password"
+            borderBottom="1px solid black"
+            margin="10px 0"
+            padding="7px 5px"
+            placeholder="비밀번호를 입력해주세요!"
+            @bind="passwordBind"
+            ref="userpassword"
+          />
+          <router-link to="/signup" class="loginToSignup">
+            회원가입</router-link
+          >
+          <ButtonComponent
+            text="로그인"
+            backGround="#f0f7fc"
+            borderRad="10px"
+            margin="5px 0"
+            type="submit"
+            class="loginbtn"
+          />
+        </form>
+      </div>
+    </transition>
   </div>
 </template>
 <script lang="ts">
@@ -97,7 +104,11 @@ import ButtonComponent from "../components/assets/button.vue";
     passwordBind(data: string) {
       this.password = data;
     },
+    backHome() {
+      this.$router.push("/");
+    },
   },
+
   mounted() {
     this.idfocus();
   },
@@ -105,7 +116,7 @@ import ButtonComponent from "../components/assets/button.vue";
 export default class Landing extends Vue {}
 </script>
 <style lang="scss">
-.login {
+.loginWrap {
   width: 100vw;
   height: 100vh;
   background-color: #f4f6f8;
@@ -114,12 +125,37 @@ export default class Landing extends Vue {}
   justify-content: center;
   align-items: center;
 }
-.loginWrap {
+.login {
   padding: 30px;
   max-width: 500px;
   width: 100%;
   border-radius: 10px;
   background: white;
+  /* transition: all 0.5s; */
+  position: relative;
+
+  animation: onload 3s forwards;
+
+  @keyframes onload {
+    0% {
+      /* opacity: 0; */
+    }
+    50% {
+      box-shadow: 3px 0 10px rgb(0 0 0 / 30%);
+      /* opacity: 1; */
+    }
+    100% {
+      box-shadow: 3px 3px 10px rgb(0 0 0 / 30%);
+      /* opacity: 1; */
+    }
+  }
+}
+.loginBackbtn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  font-size: 18px;
 }
 .loginForm {
   display: flex;
@@ -128,6 +164,7 @@ export default class Landing extends Vue {}
   width: 100%;
   height: 100%;
 }
+
 .loginImg {
   max-width: 400px;
   max-height: 300px;

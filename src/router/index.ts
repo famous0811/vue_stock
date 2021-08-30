@@ -8,7 +8,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../components/layout/index.vue"),
     children: [
       {
-        path: "landing",
+        path: "/main",
         name: "landing",
         component: Landing,
       },
@@ -37,6 +37,9 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  if (to.path === "/") {
+    next("/main");
+  }
   next();
 });
 
