@@ -174,7 +174,6 @@ export default class AttentionStock extends Vue {}
 }
 .contentsDiff {
   color: white;
-
   &.minus {
     background-color: #077df3;
     &::before {

@@ -61,7 +61,7 @@ export default class News extends Vue {}
   align-items: center;
   width: 100%;
   height: 100%;
-  border-bottom: 1px solid rgb(0 0 0 / 20%);
+  border-bottom: 1px solid rgba(0, 0, 0, 20%);
   padding: 10px 0;
 }
 .newsImg {

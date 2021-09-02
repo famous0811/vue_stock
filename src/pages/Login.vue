@@ -85,7 +85,7 @@ import ButtonComponent from "../components/assets/button.vue";
 
       // this.$store.dispatch("SIGN_IN", {
       //   userid: this.id,
-      //   password: this.password,
+      //   password: this.password,`
       // });
 
       this.$router.push("/");
@@ -141,11 +141,11 @@ export default class Landing extends Vue {}
       /* opacity: 0; */
     }
     50% {
-      box-shadow: 3px 0 10px rgb(0 0 0 / 30%);
+      box-shadow: 3px 0 10px rgba(0, 0, 0, 0.3);
       /* opacity: 1; */
     }
     100% {
-      box-shadow: 3px 3px 10px rgb(0 0 0 / 30%);
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
       /* opacity: 1; */
     }
   }
