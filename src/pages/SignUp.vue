@@ -1,6 +1,9 @@
 <template>
-  <div class="sign">
-    <div class="signWrap">
+  <div class="signWrap">
+    <div class="sign">
+      <div @click="backHome" class="loginBackbtn">
+        <i class="iconify" data-icon="mdi:close" />
+      </div>
       <form
         action="javascript:void(0);"
         @submit.prevent="signUp"
@@ -108,7 +111,18 @@ export default class Sigin extends Vue {
 </script>
 
 <style lang="scss">
-.sign {
+.loginBackbtn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.5s;
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+.signWrap {
   width: 100vw;
   height: 100vh;
   background-color: #f4f6f8;
@@ -117,12 +131,22 @@ export default class Sigin extends Vue {
   justify-content: center;
   align-items: center;
 }
-.signWrap {
+.sign {
   padding: 30px;
   max-width: 500px;
   width: 100%;
   border-radius: 10px;
   background: white;
+  position: relative;
+  animation: onload 2.5s forwards;
+
+  @keyframes onload {
+    0% {
+    }
+    100% {
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    }
+  }
 }
 .signForm {
   display: flex;

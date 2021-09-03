@@ -131,22 +131,16 @@ export default class Landing extends Vue {}
   width: 100%;
   border-radius: 10px;
   background: white;
-  /* transition: all 0.5s; */
+
   position: relative;
 
-  animation: onload 3s forwards;
+  animation: onload 2.5s forwards;
 
   @keyframes onload {
     0% {
-      /* opacity: 0; */
-    }
-    50% {
-      box-shadow: 3px 0 10px rgba(0, 0, 0, 0.3);
-      /* opacity: 1; */
     }
     100% {
       box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-      /* opacity: 1; */
     }
   }
 }
@@ -156,6 +150,10 @@ export default class Landing extends Vue {}
   left: 20px;
   cursor: pointer;
   font-size: 18px;
+  transition: transform 0.5s;
+  &:hover {
+    transform: scale(1.5);
+  }
 }
 .loginForm {
   display: flex;
