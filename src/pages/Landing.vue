@@ -1,14 +1,7 @@
 <template>
   <div class="landing">
-    <div class="landingContents mainChart">
-      <div v-for="(item, index) in mainchart" :key="index">
-        <h4 class="chartName">{{ item.name }}</h4>
-        <div class="chartVale">{{ item.value }}</div>
-        <div class="chartData">
-          <span class="chartIncrease plus">{{ item.increase }}</span>
-          <span class="chartDiff plus">{{ item.diff }}</span>
-        </div>
-      </div>
+    <div class="landingContents">
+      <Slider :propsdata="mainchart" :autoslide="true" :autoTime="4500" />
     </div>
     <div class="landingContents">
       <h4 class="landingContentsTitle">인기 종목</h4>
@@ -33,11 +26,12 @@
 import { Options, Vue } from "vue-class-component";
 import NewsComponent from "../components/news.vue";
 import AttentionStock from "../components/attentionStock.vue";
-
+import Slider from "../components/assets/slider.vue";
 @Options({
   components: {
     NewsComponent,
     AttentionStock,
+    Slider,
   },
   data() {
     return {
@@ -50,6 +44,18 @@ import AttentionStock from "../components/attentionStock.vue";
         },
         {
           name: "코스닥",
+          value: "3,133.52",
+          increase: "4.99",
+          diff: "0.16%",
+        },
+        {
+          name: "코스피2",
+          value: "3,133.52",
+          increase: "4.99",
+          diff: "0.16%",
+        },
+        {
+          name: "코스닥2",
           value: "3,133.52",
           increase: "4.99",
           diff: "0.16%",
@@ -92,8 +98,11 @@ export default class Landing extends Vue {}
 }
 .chartData {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   width: 100%;
+  & > .chartIncrease {
+    margin: 0 15px;
+  }
 }
 .chartIncrease {
   position: relative;
