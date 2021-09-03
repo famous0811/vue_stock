@@ -158,7 +158,6 @@ export default class Landing extends Vue {
 .mainBox {
   width: 100%;
   display: flex;
-
   justify-content: space-around;
   font-size: 17px;
   height: 100%;
@@ -168,6 +167,38 @@ export default class Landing extends Vue {
   height: 100%;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #487bff;
+    border-radius: 10px 10px 0 0;
+    animation: hoverOut 0.8s;
+  }
+  &:hover {
+    &::before {
+      animation: hoverIn 0.8s ease forwards;
+    }
+  }
+  @keyframes hoverIn {
+    0% {
+      height: 0;
+    }
+    100% {
+      height: 5px;
+    }
+  }
+  @keyframes hoverOut {
+    0% {
+      height: 5px;
+    }
+    100% {
+      height: 0;
+    }
+  }
 }
 .select {
   &::before {

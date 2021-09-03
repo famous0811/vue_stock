@@ -130,7 +130,7 @@ export default class Slider extends Vue {}
 }
 .slider {
   width: 100%;
-  height: 300px;
+  height: 200px;
   display: flex;
   justify-content: center;
 }
