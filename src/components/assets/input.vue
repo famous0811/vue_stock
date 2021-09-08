@@ -70,7 +70,6 @@ import { Options, Vue } from "vue-class-component";
       handler() {
         this.$emit("bind", this.input);
       },
-      deep: true,
       immediate: true,
     },
   },
