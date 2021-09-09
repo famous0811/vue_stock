@@ -2,14 +2,14 @@
   <div>
     <header class="layoutHeader">
       <h2 class="headerTitle">
-        <router-link to="/"> K증권 </router-link>
+        <router-link to="/main"> K증권 </router-link>
       </h2>
       <ul class="mainBox">
         <li
           v-for="(menu, index) in mainMenu"
           :key="index"
           class="mainContents"
-          :class="menu.selected ? 'select' : ''"
+          :class="now === menu.url ? 'select' : ''"
         >
           <router-link :to="menu.url">
             {{ menu.text }}
@@ -63,9 +63,9 @@
       </ul>
     </header>
     <v-content>
-      <!-- <v-container style="" class="fill-height" fluid> -->
-      <router-view class="router-view"></router-view>
-      <!-- </v-container> -->
+      <v-container style="" class="fill-height" fluid>
+        <router-view class="router-view"></router-view>
+      </v-container>
     </v-content>
   </div>
 </template>
@@ -79,49 +79,51 @@ import InputComponent from "../assets/input.vue";
     ButtonComponent,
     InputComponent,
   },
-  methods: {
-    select() {
-      console.log(this.searchText);
-    },
-    selectBind(data: string) {
-      this.searchText = data;
-    },
-    teast() {
-      this.searchMode = !this.searchMode;
-      if (this.searchMode) {
-        setTimeout(() => {
-          this.$refs.test.focus();
-        }, 0.1);
-      }
-    },
-  },
 })
 export default class Landing extends Vue {
-  data() {
-    return {
-      searchMode: false,
-      login: false,
-      searchText: "",
-      poplist: false,
-
-      mainMenu: [
-        {
-          text: "국내증시",
-          selected: false,
-          url: "/kospi",
-        },
-        {
-          text: "해외증시",
-          selected: false,
-          url: "/nyse",
-        },
-        {
-          text: "뉴스",
-          selected: false,
-          url: "/news",
-        },
-      ],
-    };
+  searchMode = false;
+  login = false;
+  poplist = false;
+  searchText = "";
+  now = "";
+  mainMenu = [
+    {
+      text: "국내증시",
+      url: "/kospi",
+    },
+    {
+      text: "해외증시",
+      url: "/nyse",
+    },
+    {
+      text: "뉴스",
+      url: "/news",
+    },
+  ];
+  created() {
+    // console.log();
+    this.$router.beforeEach((to, from, next) => {
+      this.now = to.path;
+      if (to.path === "/") {
+        next("/main");
+      }
+      next();
+    });
+  }
+  select() {
+    console.log(this.searchText);
+  }
+  selectBind(data: string) {
+    this.searchText = data;
+  }
+  teast() {
+    this.searchMode = !this.searchMode;
+    if (this.searchMode) {
+      // setTimeout(() => {
+      //   this.$refs
+      //   // this.$refs.test.focus();
+      // }, 0.1);
+    }
   }
 }
 </script>

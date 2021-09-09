@@ -1,6 +1,6 @@
 <template lang="">
   <div>
-    <div v-text="this.props.title" />
+    <!-- <div v-text="this.props.title" /> -->
     <div></div>
   </div>
 </template>

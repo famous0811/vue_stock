@@ -17,6 +17,21 @@ const routes: Array<RouteRecordRaw> = [
         name: "Chart",
         component: () => import("../pages/Chart.vue"),
       },
+      {
+        path: "kospi",
+        name: "kospi",
+        component: () => import("../pages/kospi.vue"),
+      },
+      {
+        path: "nyse",
+        name: "nyse",
+        component: () => import("../pages/Chart.vue"),
+      },
+      {
+        path: "news",
+        name: "news",
+        component: () => import("../pages/Chart.vue"),
+      },
     ],
   },
   {
@@ -34,13 +49,6 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-});
-
-router.beforeEach((to, from, next) => {
-  if (to.path === "/") {
-    next("/main");
-  }
-  next();
 });
 
 export default router;
