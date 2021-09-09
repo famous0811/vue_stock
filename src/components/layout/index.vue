@@ -1,7 +1,9 @@
 <template>
   <div>
     <header class="layoutHeader">
-      <h2 class="headerTitle">K증권</h2>
+      <h2 class="headerTitle">
+        <router-link to="/"> K증권 </router-link>
+      </h2>
       <ul class="mainBox">
         <li
           v-for="(menu, index) in mainMenu"
@@ -9,7 +11,9 @@
           class="mainContents"
           :class="menu.selected ? 'select' : ''"
         >
-          {{ menu.text }}
+          <router-link :to="menu.url">
+            {{ menu.text }}
+          </router-link>
         </li>
       </ul>
 
@@ -99,24 +103,22 @@ export default class Landing extends Vue {
       login: false,
       searchText: "",
       poplist: false,
-      news: [
-        {
-          title: "코스피 떡락?",
-          content: "ㅋㅋㅋㅋㅋㅋ",
-        },
-      ],
+
       mainMenu: [
         {
           text: "국내증시",
           selected: false,
+          url: "/kospi",
         },
         {
           text: "해외증시",
           selected: false,
+          url: "/nyse",
         },
         {
           text: "뉴스",
           selected: false,
+          url: "/news",
         },
       ],
     };
@@ -144,6 +146,7 @@ export default class Landing extends Vue {
   width: 60%;
   min-width: fit-content;
   color: #487bff;
+  cursor: pointer;
 }
 
 .router-view {
@@ -176,11 +179,11 @@ export default class Landing extends Vue {
     width: 100%;
     background: #487bff;
     border-radius: 10px 10px 0 0;
-    animation: hoverOut 0.8s;
+    animation: hoverOut 0.5s;
   }
   &:hover {
     &::before {
-      animation: hoverIn 0.8s ease forwards;
+      animation: hoverIn 0.3s ease forwards;
     }
   }
   @keyframes hoverIn {

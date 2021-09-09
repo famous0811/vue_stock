@@ -95,6 +95,9 @@ import ButtonComponent from "../components/assets/button.vue";
     passwordBind(data: string) {
       this.password = data;
     },
+    backHome() {
+      this.$router.push("/");
+    },
   },
   mounted() {
     this.idfocus();
