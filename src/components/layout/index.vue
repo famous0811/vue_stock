@@ -179,27 +179,12 @@ export default class Landing extends Vue {
     width: 100%;
     background: #487bff;
     border-radius: 10px 10px 0 0;
-    animation: hoverOut 0.5s;
+    transition: height 0.5s;
+    height: 0px;
   }
   &:hover {
     &::before {
-      animation: hoverIn 0.3s ease forwards;
-    }
-  }
-  @keyframes hoverIn {
-    0% {
-      height: 0;
-    }
-    100% {
       height: 5px;
-    }
-  }
-  @keyframes hoverOut {
-    0% {
-      height: 5px;
-    }
-    100% {
-      height: 0;
     }
   }
 }

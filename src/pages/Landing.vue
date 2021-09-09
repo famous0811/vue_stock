@@ -4,19 +4,27 @@
       <Slider :propsdata="mainchart" :autoslide="true" :autoTime="4500" />
     </div>
     <div class="landingContents">
-      <h4 class="landingContentsTitle">인기 종목</h4>
+      <div class="landingContentsHeader">
+        <h4 class="landingContentsTitle">인기 종목</h4>
+        <div class="otherInfo">
+          <router-link to="/test">더보기</router-link>
+        </div>
+      </div>
       <AttentionStock />
     </div>
     <div class="landingContents">
-      <h4 class="landingContentsTitle">관심 종목</h4>
+      <div class="landingContentsHeader">
+        <h4 class="landingContentsTitle">관심 종목</h4>
+        <div class="otherInfo">
+          <router-link to="/test">더보기</router-link>
+        </div>
+      </div>
       <AttentionStock />
     </div>
     <div class="landingContents">
       <h4 class="landingContentsTitle">주요뉴스</h4>
       <div>
-        <NewsComponent />
-        <NewsComponent />
-        <NewsComponent />
+        <NewsComponent v-for="n in 5" :key="n" />
       </div>
     </div>
   </div>
@@ -88,7 +96,11 @@ export default class Landing extends Vue {}
   justify-content: space-around;
   align-items: center;
 }
-
+.landingContentsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .chartName {
   margin: 5px 0;
 }
@@ -132,6 +144,13 @@ export default class Landing extends Vue {}
       transform: translateY(-55%);
     }
     color: #bbbbbb;
+  }
+}
+.otherInfo {
+  transition: all 0.5s;
+  font-weight: bold;
+  &:hover {
+    color: #077df3;
   }
 }
 .chartDiff {
