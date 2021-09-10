@@ -35,8 +35,13 @@
 </template>
 <script>
 import { Options, Vue } from "vue-class-component";
-
 @Options({
+  props: {
+    propsdesserts: {
+      type: Array,
+      default: [],
+    },
+  },
   data() {
     return {
       loadingState: true,
@@ -124,7 +129,13 @@ import { Options, Vue } from "vue-class-component";
     };
   },
 })
-export default class AttentionStock extends Vue {}
+export default class AttentionStock extends Vue {
+  created() {
+    if (this.propsdesserts.length !== 0) {
+      this.desserts = this.propsdesserts;
+    }
+  }
+}
 </script>
 <style lang="scss">
 .attentionStockTable {

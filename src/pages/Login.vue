@@ -64,12 +64,7 @@ import ButtonComponent from "../components/assets/button.vue";
     InputComponent,
     ButtonComponent,
   },
-  data() {
-    return {
-      id: "",
-      password: "",
-    };
-  },
+
   methods: {
     signIn() {
       if (this.id === "") {
@@ -113,7 +108,10 @@ import ButtonComponent from "../components/assets/button.vue";
     this.idfocus();
   },
 })
-export default class Landing extends Vue {}
+export default class Landing extends Vue {
+  id = "";
+  password = "";
+}
 </script>
 <style lang="scss">
 .loginWrap {

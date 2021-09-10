@@ -13,11 +13,7 @@ import { Options, Vue } from "vue-class-component";
   },
 })
 export default class Landing extends Vue {
-  data() {
-    return {
-      test: "test",
-    };
-  }
+  test = "test";
 }
 </script>
 

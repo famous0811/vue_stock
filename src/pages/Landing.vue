@@ -41,38 +41,35 @@ import Slider from "../components/assets/slider.vue";
     AttentionStock,
     Slider,
   },
-  data() {
-    return {
-      mainchart: [
-        {
-          name: "코스피",
-          value: "3,133.52",
-          increase: "4.99",
-          diff: "0.16%",
-        },
-        {
-          name: "코스닥",
-          value: "3,133.52",
-          increase: "4.99",
-          diff: "0.16%",
-        },
-        {
-          name: "코스피2",
-          value: "3,133.52",
-          increase: "4.99",
-          diff: "0.16%",
-        },
-        {
-          name: "코스닥2",
-          value: "3,133.52",
-          increase: "4.99",
-          diff: "0.16%",
-        },
-      ],
-    };
-  },
 })
-export default class Landing extends Vue {}
+export default class Landing extends Vue {
+  mainchart = [
+    {
+      name: "코스피",
+      value: "3,133.52",
+      increase: "4.99",
+      diff: "0.16%",
+    },
+    {
+      name: "코스닥",
+      value: "3,133.52",
+      increase: "4.99",
+      diff: "0.16%",
+    },
+    {
+      name: "코스피2",
+      value: "3,133.52",
+      increase: "4.99",
+      diff: "0.16%",
+    },
+    {
+      name: "코스닥2",
+      value: "3,133.52",
+      increase: "4.99",
+      diff: "0.16%",
+    },
+  ];
+}
 </script>
 
 <style lang="scss">

@@ -27,7 +27,7 @@
               fontSize="14px"
               placeholder="찾으시는 종목을 입력하세요"
               v-on:keyup.enter="select"
-              v-if="searchMode"
+              v-show="searchMode"
               @bind="selectBind"
               ref="test"
             />
@@ -79,8 +79,16 @@ import InputComponent from "../assets/input.vue";
     ButtonComponent,
     InputComponent,
   },
+  watch: {
+    $route(to) {
+      this.now = to.path;
+    },
+  },
 })
 export default class Landing extends Vue {
+  $refs!: {
+    test: HTMLDivElement;
+  };
   searchMode = false;
   login = false;
   poplist = false;
@@ -100,30 +108,23 @@ export default class Landing extends Vue {
       url: "/news",
     },
   ];
-  created() {
-    // console.log();
-    this.$router.beforeEach((to, from, next) => {
-      this.now = to.path;
-      if (to.path === "/") {
-        next("/main");
-      }
-      next();
-    });
-  }
-  select() {
+
+  select(): void {
     console.log(this.searchText);
   }
-  selectBind(data: string) {
+  selectBind(data: string): void {
     this.searchText = data;
   }
-  teast() {
+  teast(): void {
     this.searchMode = !this.searchMode;
     if (this.searchMode) {
-      // setTimeout(() => {
-      //   this.$refs
-      //   // this.$refs.test.focus();
-      // }, 0.1);
+      setTimeout(() => {
+        this.$refs.test.focus();
+      }, 10);
     }
+  }
+  created(): void {
+    this.now = this.$route.path;
   }
 }
 </script>
