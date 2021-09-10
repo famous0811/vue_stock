@@ -103,7 +103,7 @@ import ButtonComponent from "../components/assets/button.vue";
       this.$router.push("/");
     },
   },
-
+  
   mounted() {
     this.idfocus();
   },
